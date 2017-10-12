@@ -1,0 +1,257 @@
+<ui:composition template="/vistas/modulos/TemplateGeneral.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:f="http://java.sun.com/jsf/core"
+>
+	<ui:define name="contentBread">
+		<h:form id="FormHeader">
+			<li class="current" >
+				<i  class="icon-angle-right labelBreadCrumbNormal"></i>
+				<a  class="labelBreadCrumbNormal" 
+					href="#{facesContext.externalContext.requestContextPath}/REEMPLAZAR_REF_URL.xhtml"					
+					>[**************Nombre funcion**************]
+				</a>
+			</li>		
+			<li id="liRegistro" class="current" style="display: #{REEMPLAZAR_MANAGED_BEAN.visibleRegistro ?'block':'none'} ;">
+				<i class="icon-angle-right labelBreadCrumbNormal"></i>
+				<a class="labelBreadCrumbDecor"  href="#">Registro: #{REEMPLAZAR_MANAGED_BEAN.MODO_ACTUAL}</a>
+			</li>
+		</h:form>
+
+	</ui:define >
+
+	<ui:define name="contentEspecifico">
+		<h:form id="FormListadoMain">
+			<p:messages  globalOnly="true" autoUpdate="false" closable="true" />
+			<p:tooltip/>
+			<p:blockUI block="FormListadoMain" widgetVar="blockElem" id="blockElem" 
+					trigger="rcInit btnBuscar btnGuardar" >
+				#{mensaje.MSJ_BLOCKUI_Proceso}<br />
+				<p:graphicImage value="/resources/images/loader03.gif"/>
+			</p:blockUI>
+			<p:remoteCommand id="rcInit" name="inicializar"   
+				update="FormListadoMain FormHeader" ></p:remoteCommand>
+			
+			<div id="seccionMain" style="display: #{REEMPLAZAR_MANAGED_BEAN.visibleRegistro ?'none':'block'} ;" >
+				<p:panel  toggleable="true" header="[**************Nombre funcion**************]" collapsed="false"   >
+				
+					<!-- MODELO HEAD TOOL SIN TOOLBAR-->
+					<div class="customHr">.</div>
+					<div  class="row"  align="center"  >
+						<div class="ui-g-12 ui-g-nopad">
+							<div class="ui-fluid">
+								<p:panelGrid layout="grid" styleClass="ui-panelgrid-blank" columns="3"
+											 columnClasses="ui-grid-col-2,ui-grid-col-6,ui-grid-col-4"
+								>
+									<p:column>
+										<p:panelGrid  layout="grid" styleClass="ui-panelgrid-blank" columns="1" 
+											columnClasses="ui-grid-col-12"
+											>
+											<p:commandButton value="Buscar" icon="ui-icon-search" 
+												id="btnBuscar" style=" height: 30px;"
+												actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnBuscar}"									
+												onstart="PF('dtCarrera').paginator.setPage(0);" update="dtCarrera" 
+												
+												title="#{mensaje.MSJ_INFO_TIP_BUSCAR_MAIN}"
+											/>		
+										</p:panelGrid>
+											
+																												
+									</p:column>
+									<p:column>
+										<p:spacer width="10" ></p:spacer>
+									</p:column>							
+									<p:column>
+										<p:panelGrid  layout="grid" styleClass="ui-panelgrid-blank" columns="6" 
+											columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
+											>	
+												<p:spacer width="1" ></p:spacer>
+												<p:commandButton value="" icon="fa fa-plus-square" type="submit"
+													id="btnNuevo" style=" height: 30px;"
+													actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnNuevo}"
+													rendered="true"
+													process="@form"
+													update="@form, FormHeader"
+													>
+													
+												</p:commandButton>	
+												<p:commandButton value="" icon="fa fa-edit"
+													actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnModificar}"
+													rendered="true" style=" height: 30px;"
+													process="@form" type="submit"
+													update="@form, FormHeader"
+													title="#{mensaje.MSJ_INFO_TIP_MODIFICAR_MAIN}"
+													>
+													
+												</p:commandButton>					
+												<p:commandButton id="btnVer" value="" icon="fa fa-eye"
+													
+													actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnVer}"
+													rendered="true" style=" height: 30px;"
+													process="@form"
+													update="@form, FormHeader"
+													title="#{mensaje.MSJ_INFO_TIP_VER_MAIN}"
+													>
+													
+												</p:commandButton>
+												<p:commandButton value="" icon="fa fa-close"
+													actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnInactivar}"
+													rendered="true" style=" height: 30px;"
+													process="@form"
+													update="@form, FormHeader"
+													title="#{mensaje.MSJ_INFO_TIP_INACTIVAR_MAIN}"
+													>											
+												</p:commandButton>																																
+												<p:commandButton value="" icon="fa fa-trash"
+													actionListener="#{REEMPLAZAR_MANAGED_BEAN.btnEliminar}"
+													rendered="true" style=" height: 30px;"
+													process="@form"
+													update="@form, FormHeader"
+													title="#{mensaje.MSJ_INFO_TIP_ELIMINAR_MAIN}"
+													>											
+												</p:commandButton>																																						
+										</p:panelGrid>
+									</p:column>
+								</p:panelGrid>						
+							</div>
+						</div>					
+					</div>
+					<div class="customHr">.</div>
+					
+					<!-- MODELO FILTRO/FORM SIN HEADER -->
+					<div class="ui-g">
+						<div class="ui-g-12 ui-g-nopad">
+							<div class="ui-fluid">												
+								<p:spacer height="10" width="20" ></p:spacer>
+								<p:panelGrid  layout="grid" styleClass="ui-panelgrid-blank" columns="3"
+										columnClasses="ui-grid-col-5,ui-grid-col-5,ui-grid-col-2"
+								>									
+									<p:column>
+											<p:outputLabel value="Label 1" styleClass="estiloLabelForm" />													
+											<p:inputText													
+												value="Valor 1"
+												/>														
+									</p:column>		
+									<p:column>																																																
+											<p:outputLabel value="Label 2" styleClass="estiloLabelForm" />													
+											<p:inputText													
+												value="Valor 2"
+												/>																									 														
+									</p:column>	
+																											
+									<p:column>
+											<p:spacer height="2" width="20" ></p:spacer>
+								
+									</p:column>
+								</p:panelGrid>																							
+							</div>
+						</div>
+					</div>
+							
+					<!-- MODELO FILTRO/FORM CON HEADER -->
+							
+					<div >					
+						<i class="fa fa-caret-down"></i> 
+						<a style="font-weight:bold; font-size:14px;" class="estiloLabelForm" href="#divGeneral" data-toggle="collapse"> 
+							Filtros</a>
+						<div id="divGeneral" class="ui-g collapse in" >
+							<div class="ui-g-12 ui-g-nopad">
+								<div class="ui-fluid">												
+									<p:spacer height="10" width="20" ></p:spacer>
+									<p:panelGrid  layout="grid" styleClass="ui-panelgrid-blank" columns="3"
+											columnClasses="ui-grid-col-5,ui-grid-col-5,ui-grid-col-2"
+									>									
+										<p:column>
+												<p:outputLabel value="Label 1" styleClass="estiloLabelForm" />													
+												<p:inputText													
+													value="Valor 1"
+													/>														
+										</p:column>		
+										<p:column>																																																
+												<p:outputLabel value="Label 2" styleClass="estiloLabelForm" />													
+												<p:inputText													
+													value="Valor 2"
+													/>																									 														
+										</p:column>	
+																												
+										<p:column>
+												<p:spacer height="2" width="20" ></p:spacer>
+									
+										</p:column>
+									</p:panelGrid>																							
+								</div>
+							</div>							
+						</div>				
+					</div>			
+				</p:panel>
+	
+				<p:dataTable id="dataTable" var="elemTable"
+									reflow="true"
+									value="#{REEMPLAZAR_MANAGED_BEAN.model}" paginator="true"
+									rows="5"  lazy="true"
+									selectionMode="single"
+									emptyMessage="#{mensaje.MSJ_WARN_busquedaVacia}"
+									rowKey="#{elemTable.tipoNegocioId}"															
+									selection="#{REEMPLAZAR_MANAGED_BEAN.tipoNegocioSeleccion}"
+									rowsPerPageTemplate="10,20,50,100"
+									paginatorPosition="top"
+									paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									style="font-size:11px;"																		
+									>
+									<f:facet name="header"  >
+																	
+									</f:facet>																																																														
+									<p:ajax event="rowDblselect" 
+										
+										 />	
+																															
+									<p:column headerText="Código" style="text-align:left;"   width="10%"										
+									>																													
+										<h:outputText value="#{elemTable.codigo}" 										
+										/>
+									</p:column>
+									<p:column headerText="Descripción" style="text-align:left;"   width="50%"										
+									>																													
+										<h:outputText value="#{elemTable.descripcion}" 										
+										/>
+									</p:column>
+																																	 
+									<p:column headerText="Fecha de Creación" style="text-align:center" width="15%">
+										<h:outputText value="#{elemTable.fechaCreacion}"											
+											>
+											<f:convertDateTime type="Date" pattern="#{label.PATTERN_DATETIME}" locale="es"/>
+										</h:outputText>
+									</p:column>																																																	
+									<p:column headerText="Estado " style="height:30px; text-align:center;" width="15%">
+																			
+										<h:outputText value="#{elemTable.estado eq 'A' ? 'Activo':
+												(elemTable.estado eq 'I' ? 'Inactivo':'--' ) 
+												}" 
+											styleClass="#{elemTable.estado eq 'A'? 'colTableStyleBlue01':
+												(elemTable.estado eq 'I' ? 'colTableStyleRed01':'' )												
+												}"	
+									/>
+									</p:column>
+																																						
+				</p:dataTable>
+
+			</div>
+		
+			<div id="seccionMain" style="display: #{REEMPLAZAR_MANAGED_BEAN.visibleRegistro?'block':'none'} ;" >
+				<p:outputPanel id="opSeccionReg" >					
+					<ui:include src="/vistas/inicio/paginaDefault.xhtml"></ui:include>
+				</p:outputPanel>				
+			</div>	
+
+		
+									
+		</h:form>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				//De ser necesario una funcion inicializar() llamada con un remote command;
+			});
+		</script>
+	</ui:define>
+</ui:composition>
