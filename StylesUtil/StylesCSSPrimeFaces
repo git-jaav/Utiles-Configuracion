@@ -1,0 +1,5 @@
+
+/**class para quitar padding de los gridPanel*/
+.sinpadding [class*="col-"] {
+    padding: 0;
+}
