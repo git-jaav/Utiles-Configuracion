@@ -1,0 +1,17 @@
+[Unit]
+Description=Java Service: APP API Rest - con Local PROFILE
+
+[Service]
+User=root
+
+#The configuration file application.properties should be here:
+
+WorkingDirectory=/home/jaav/boot-projects/
+ExecStart=/home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
