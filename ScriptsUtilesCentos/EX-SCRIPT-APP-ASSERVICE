@@ -4,10 +4,15 @@ Description=Java Service: APP API Rest - con Local PROFILE
 [Service]
 User=root
 
-#The configuration file application.properties should be here:
+#La configuración de la aplicación deberá estar aquí:
 
 WorkingDirectory=/home/jaav/boot-projects/
+
+##Considerar agregar "/bin/bash" antes del path. Ejemplo:
+#ExecStart=/bin/bash /home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
+
 ExecStart=/home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
+
 SuccessExitStatus=143
 TimeoutStopSec=10
 Restart=on-failure
