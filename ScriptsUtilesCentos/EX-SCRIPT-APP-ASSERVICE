@@ -4,15 +4,29 @@ Description=Java Service: APP API Rest - con Local PROFILE
 [Service]
 User=root
 
-#La configuración de la aplicación deberá estar aquí:
+########################################################################################################
+######La configuración de la aplicación deberá estar aquí:
+
+######FORMA 1: INVOCAR DIRECTAMENTE A APP: ########
+
+##Considerar agregar "/bin/bash" antes del path. Ejemplo (descomentarla):
+# ExecStart=/bin/bash /home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
+
+##también se puede considerar set la memoria. Ejmpelo:  [...PATH]/java -Xms512m -Xmx1024m  -jar [...lo que sigue] 
+## y otras configuraciones posibles
+## Considerar la sección de la ejecución (descomentarla):
+
+# ExecStart=/home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
+
+######FORMA 2: INVOCAR APP A TRAVÉS DE UN SCRIPT BASH ########
+## paso 1.-crear SCRIPT_RUN_APP.sh 
+## Con el contenido: ej: cd /home/jaav/boot-projects/java -Xms512m -Xmx1024m -jar -Dspring.profiles.active=local [app-service].jar
+## paso 2.- dar permisos al Script (En su ruta ) con: chmod  +x  SCRIPT_RUN_APP.sh 
+## paso 3: considerar la sección de la ejecución, ejemplo (descomentarla):
+
+# ExecStart=/bin/bash /home/jaav/boot-projects/SCRIPT_RUN_APP.sh 
 
 WorkingDirectory=/home/jaav/boot-projects/
-
-##Considerar agregar "/bin/bash" antes del path. Ejemplo:
-#ExecStart=/bin/bash /home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
-
-ExecStart=/home/jaav/boot-projects/java -jar -Dspring.profiles.active=local [app-service].jar
-
 SuccessExitStatus=143
 TimeoutStopSec=10
 Restart=on-failure
