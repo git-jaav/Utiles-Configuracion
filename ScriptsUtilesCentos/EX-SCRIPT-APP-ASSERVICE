@@ -20,7 +20,7 @@ User=root
 
 ######FORMA 2: INVOCAR APP A TRAVÉS DE UN SCRIPT BASH ########
 ## paso 1.-crear SCRIPT_RUN_APP.sh 
-## Con el contenido: ej: cd /home/jaav/boot-projects/java -Xms512m -Xmx1024m -jar -Dspring.profiles.active=local [app-service].jar
+## Con el contenido: ej: cd /home/jaav/boot-projects && java -Xms512m -Xmx1024m -jar -Dspring.profiles.active=local [app-service].jar
 ## paso 2.- dar permisos al Script (En su ruta ) con: chmod  +x  SCRIPT_RUN_APP.sh 
 ## paso 3: considerar la sección de la ejecución, ejemplo (descomentarla):
 
