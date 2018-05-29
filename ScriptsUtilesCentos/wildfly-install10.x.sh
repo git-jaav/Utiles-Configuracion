@@ -2,7 +2,13 @@
 # Original script: https://gist.github.com/sukharevd/6087988
      
 # This version is the only variable to change when running the script
+###NOTAS**
 # Válido para 10 y 11, hasta ahora probados
+# corregir en la configuración hecha por el Script:
+# Despues de ejecutarlo verificar en /etc/default el archivo 'wildfly' y el valor de la variables 'WILDFLY_CONFIG'
+# debería ser 'standalone.xml' , si es que se desea arrancar con esta configuración y no la full, que deja el Script...
+
+##INICIO
 WILDFLY_VERSION=11.0.0.Final
 WILDFLY_FILENAME=wildfly-$WILDFLY_VERSION
 WILDFLY_ARCHIVE_NAME=$WILDFLY_FILENAME.tar.gz
