@@ -1,5 +1,32 @@
 
 /**class para quitar padding de los gridPanel*/
+<style type="text/css">
 .sinpadding [class*="col-"] {
     padding: 0;
 }
+</style>
+
+/***Estructura para ocultar DIV por la dimension (AUTORESPONSIVE)*/
+
+<style type="text/css">
+		
+			@media (max-width: 992px){
+				.container_desk_custom {
+			    	display: none;
+				}
+			}
+			
+			.wrap_mobile_custom {
+				display: none;
+			}
+		
+			@media (max-width: 992px){
+				.wrap_mobile_custom {
+				    display: -webkit-box;
+				    display: -webkit-flex;
+				    display: -moz-box;
+				    display: -ms-flexbox;
+				    display: flex !important;
+				}
+			}
+</style>
