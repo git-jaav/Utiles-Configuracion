@@ -1,0 +1,39 @@
+.colTableEstadoActivo{
+	
+	color: #284A89;
+}
+.colTableEstadoInactivo{
+	
+	color:#990000;
+}			
+.colTableStyleBlue01{
+	
+	color:#284A89;
+}
+.colTableStyleRed01{
+	
+	color:#990000;
+}			
+.colTableStyleGreen01{
+	
+	color:#097718;
+}				
+.colTableStyleYellow01{
+	
+	color:#C99934;
+}							
+.colTableStyleGray01{
+	
+	color:#232E35;
+}
+.colTableStyleRed02{
+	
+	color:#FF1010;
+}
+.colTableStyleOrange01{		
+	color:#E66108;
+}
+
+.uppercase{
+	text-transform: uppercase;
+}
